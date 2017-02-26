@@ -1,0 +1,16 @@
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+target 'musical' do
+
+pod 'AVOSCloud'
+pod 'SDWebImage'
+
+# 高德地图
+pod 'AMap2DMap'
+pod 'AMapSearch'
+pod 'AMapLocation'
+
+end
+
