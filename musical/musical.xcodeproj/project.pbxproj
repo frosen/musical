@@ -7,9 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		65891D3D1E5ECDED00920BF6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65891D3C1E5ECDED00920BF6 /* AppDelegate.swift */; };
-		65891D3F1E5ECDED00920BF6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65891D3E1E5ECDED00920BF6 /* ViewController.swift */; };
-		65891D421E5ECDED00920BF6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65891D401E5ECDED00920BF6 /* Main.storyboard */; };
+		655C9C831E62A52500E62132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C7F1E62A52500E62132 /* AppDelegate.swift */; };
+		655C9C841E62A52500E62132 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C821E62A52500E62132 /* RootViewController.swift */; };
+		655C9C881E62A5CD00E62132 /* MyTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C861E62A5CD00E62132 /* MyTabBar.swift */; };
+		655C9C891E62A5CD00E62132 /* MyTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C871E62A5CD00E62132 /* MyTabBarItem.swift */; };
+		655C9C8F1E62A8B400E62132 /* BaseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C8B1E62A8B400E62132 /* BaseCell.swift */; };
+		655C9C901E62A8B400E62132 /* BaseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C8C1E62A8B400E62132 /* BaseController.swift */; };
+		655C9C911E62A8B400E62132 /* BaseTabController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C8D1E62A8B400E62132 /* BaseTabController.swift */; };
+		655C9C921E62A8B400E62132 /* UIBase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C8E1E62A8B400E62132 /* UIBase.swift */; };
+		655C9C971E62ABE900E62132 /* ListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C951E62ABE900E62132 /* ListCell.swift */; };
+		655C9C981E62ABE900E62132 /* ListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C961E62ABE900E62132 /* ListController.swift */; };
+		655C9C9C1E62ADC900E62132 /* OwnCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C991E62ADC900E62132 /* OwnCells.swift */; };
+		655C9C9D1E62ADC900E62132 /* OwnController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C9A1E62ADC900E62132 /* OwnController.swift */; };
+		655C9C9E1E62ADC900E62132 /* PersonalInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C9B1E62ADC900E62132 /* PersonalInfoController.swift */; };
 		65891D441E5ECDED00920BF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 65891D431E5ECDED00920BF6 /* Assets.xcassets */; };
 		65891D471E5ECDED00920BF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65891D451E5ECDED00920BF6 /* LaunchScreen.storyboard */; };
 		65891D521E5ECDED00920BF6 /* musicalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65891D511E5ECDED00920BF6 /* musicalTests.swift */; };
@@ -36,10 +46,21 @@
 
 /* Begin PBXFileReference section */
 		01A94FF8A6B60DD998D9D3C7 /* Pods-musical.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musical.debug.xcconfig"; path = "Pods/Target Support Files/Pods-musical/Pods-musical.debug.xcconfig"; sourceTree = "<group>"; };
+		655C9C7F1E62A52500E62132 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		655C9C801E62A52500E62132 /* Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridging.h; sourceTree = "<group>"; };
+		655C9C821E62A52500E62132 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		655C9C861E62A5CD00E62132 /* MyTabBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBar.swift; sourceTree = "<group>"; };
+		655C9C871E62A5CD00E62132 /* MyTabBarItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyTabBarItem.swift; sourceTree = "<group>"; };
+		655C9C8B1E62A8B400E62132 /* BaseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseCell.swift; sourceTree = "<group>"; };
+		655C9C8C1E62A8B400E62132 /* BaseController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseController.swift; sourceTree = "<group>"; };
+		655C9C8D1E62A8B400E62132 /* BaseTabController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseTabController.swift; sourceTree = "<group>"; };
+		655C9C8E1E62A8B400E62132 /* UIBase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIBase.swift; sourceTree = "<group>"; };
+		655C9C951E62ABE900E62132 /* ListCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListCell.swift; path = list/ListCell.swift; sourceTree = "<group>"; };
+		655C9C961E62ABE900E62132 /* ListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListController.swift; path = list/ListController.swift; sourceTree = "<group>"; };
+		655C9C991E62ADC900E62132 /* OwnCells.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OwnCells.swift; path = own/OwnCells.swift; sourceTree = "<group>"; };
+		655C9C9A1E62ADC900E62132 /* OwnController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OwnController.swift; path = own/OwnController.swift; sourceTree = "<group>"; };
+		655C9C9B1E62ADC900E62132 /* PersonalInfoController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PersonalInfoController.swift; path = own/PersonalInfoController.swift; sourceTree = "<group>"; };
 		65891D391E5ECDED00920BF6 /* musical.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = musical.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		65891D3C1E5ECDED00920BF6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		65891D3E1E5ECDED00920BF6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		65891D411E5ECDED00920BF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		65891D431E5ECDED00920BF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		65891D461E5ECDED00920BF6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		65891D481E5ECDED00920BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -79,6 +100,67 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		655C9C7E1E62A52500E62132 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				655C9C7F1E62A52500E62132 /* AppDelegate.swift */,
+				655C9C801E62A52500E62132 /* Bridging.h */,
+				655C9C811E62A52500E62132 /* ui */,
+			);
+			path = src;
+			sourceTree = "<group>";
+		};
+		655C9C811E62A52500E62132 /* ui */ = {
+			isa = PBXGroup;
+			children = (
+				655C9C821E62A52500E62132 /* RootViewController.swift */,
+				655C9C8A1E62A8B400E62132 /* base */,
+				655C9C931E62AB8A00E62132 /* list */,
+				655C9C941E62AB9F00E62132 /* own */,
+				655C9C851E62A5CD00E62132 /* widget */,
+			);
+			path = ui;
+			sourceTree = "<group>";
+		};
+		655C9C851E62A5CD00E62132 /* widget */ = {
+			isa = PBXGroup;
+			children = (
+				655C9C861E62A5CD00E62132 /* MyTabBar.swift */,
+				655C9C871E62A5CD00E62132 /* MyTabBarItem.swift */,
+			);
+			path = widget;
+			sourceTree = "<group>";
+		};
+		655C9C8A1E62A8B400E62132 /* base */ = {
+			isa = PBXGroup;
+			children = (
+				655C9C8B1E62A8B400E62132 /* BaseCell.swift */,
+				655C9C8C1E62A8B400E62132 /* BaseController.swift */,
+				655C9C8D1E62A8B400E62132 /* BaseTabController.swift */,
+				655C9C8E1E62A8B400E62132 /* UIBase.swift */,
+			);
+			path = base;
+			sourceTree = "<group>";
+		};
+		655C9C931E62AB8A00E62132 /* list */ = {
+			isa = PBXGroup;
+			children = (
+				655C9C961E62ABE900E62132 /* ListController.swift */,
+				655C9C951E62ABE900E62132 /* ListCell.swift */,
+			);
+			name = list;
+			sourceTree = "<group>";
+		};
+		655C9C941E62AB9F00E62132 /* own */ = {
+			isa = PBXGroup;
+			children = (
+				655C9C991E62ADC900E62132 /* OwnCells.swift */,
+				655C9C9A1E62ADC900E62132 /* OwnController.swift */,
+				655C9C9B1E62ADC900E62132 /* PersonalInfoController.swift */,
+			);
+			name = own;
+			sourceTree = "<group>";
+		};
 		65891D301E5ECDED00920BF6 = {
 			isa = PBXGroup;
 			children = (
@@ -104,12 +186,10 @@
 		65891D3B1E5ECDED00920BF6 /* musical */ = {
 			isa = PBXGroup;
 			children = (
-				65891D3C1E5ECDED00920BF6 /* AppDelegate.swift */,
-				65891D3E1E5ECDED00920BF6 /* ViewController.swift */,
-				65891D401E5ECDED00920BF6 /* Main.storyboard */,
 				65891D431E5ECDED00920BF6 /* Assets.xcassets */,
 				65891D451E5ECDED00920BF6 /* LaunchScreen.storyboard */,
 				65891D481E5ECDED00920BF6 /* Info.plist */,
+				655C9C7E1E62A52500E62132 /* src */,
 			);
 			path = musical;
 			sourceTree = "<group>";
@@ -264,7 +344,6 @@
 			files = (
 				65891D471E5ECDED00920BF6 /* LaunchScreen.storyboard in Resources */,
 				65891D441E5ECDED00920BF6 /* Assets.xcassets in Resources */,
-				65891D421E5ECDED00920BF6 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -337,8 +416,19 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				65891D3F1E5ECDED00920BF6 /* ViewController.swift in Sources */,
-				65891D3D1E5ECDED00920BF6 /* AppDelegate.swift in Sources */,
+				655C9C921E62A8B400E62132 /* UIBase.swift in Sources */,
+				655C9C981E62ABE900E62132 /* ListController.swift in Sources */,
+				655C9C841E62A52500E62132 /* RootViewController.swift in Sources */,
+				655C9C831E62A52500E62132 /* AppDelegate.swift in Sources */,
+				655C9C891E62A5CD00E62132 /* MyTabBarItem.swift in Sources */,
+				655C9C9C1E62ADC900E62132 /* OwnCells.swift in Sources */,
+				655C9C911E62A8B400E62132 /* BaseTabController.swift in Sources */,
+				655C9C8F1E62A8B400E62132 /* BaseCell.swift in Sources */,
+				655C9C971E62ABE900E62132 /* ListCell.swift in Sources */,
+				655C9C901E62A8B400E62132 /* BaseController.swift in Sources */,
+				655C9C9D1E62ADC900E62132 /* OwnController.swift in Sources */,
+				655C9C9E1E62ADC900E62132 /* PersonalInfoController.swift in Sources */,
+				655C9C881E62A5CD00E62132 /* MyTabBar.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -374,14 +464,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		65891D401E5ECDED00920BF6 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				65891D411E5ECDED00920BF6 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		65891D451E5ECDED00920BF6 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
