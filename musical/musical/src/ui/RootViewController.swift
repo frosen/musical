@@ -79,13 +79,13 @@ class RootViewController: UITabBarController, MyTabBarDelegate {
 
         // 教师列表
         let listVc = ListController(rootVC: self)
-        addVc(listVc, title: "找教师", image: #imageLiteral(resourceName: "home2"))
+        addVc(listVc, title: "找教师", image: #imageLiteral(resourceName: "tab_home"))
 
         // 圈子
 
         // 个人
         let ownVc = OwnController(rootVC: self)
-        addVc(ownVc, title: "个人", image: #imageLiteral(resourceName: "my2"))
+        addVc(ownVc, title: "个人", image: #imageLiteral(resourceName: "tab_my"))
     }
 
     private func addVc(_ vc: BaseTabController, title t: String, image img: UIImage) {

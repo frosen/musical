@@ -98,7 +98,7 @@ class MyTabBar: UIView {
 
         ctrller.selectedIndex = btn.tag
 
-        myTabBarDelegate?.tabBar(self, didClickItem: btn)
+        myTabBarDelegate.tabBar(self, didClickItem: btn)
     }
 }
 

@@ -19,30 +19,30 @@ struct NorCellData {
     }
 }
 
-class OwnController: BaseTabController, UserMgrObserver, UITableViewDelegate, UITableViewDataSource, BaseCellDelegate, InfoHeadViewDelegate {
+class OwnController: BaseTabController, DataOB, UITableViewDelegate, UITableViewDataSource, BaseCellDelegate, InfoHeadViewDelegate {
     //信息头，比赛成绩，QR，其他项目等group
     private let headCellNum: Int = 1
     private let group = [
         //section
         [
-            NorCellData(i: #imageLiteral(resourceName: "share"), t: "福利", st: ""),
+            NorCellData(i: #imageLiteral(resourceName: "own_share"), t: "福利", st: ""),
         ],
         [
-            NorCellData(i: #imageLiteral(resourceName: "share"), t: "分享", st: "分享"),
-            NorCellData(i: #imageLiteral(resourceName: "feedback"), t: "反馈", st: ""),
+            NorCellData(i: #imageLiteral(resourceName: "own_share"), t: "分享", st: "分享"),
+            NorCellData(i: #imageLiteral(resourceName: "own_share"), t: "反馈", st: ""),
         ],
         [
-            NorCellData(i: #imageLiteral(resourceName: "setting"), t: "账号", st: ""),
-            NorCellData(i: #imageLiteral(resourceName: "setting"), t: "隐私", st: ""),
-            NorCellData(i: #imageLiteral(resourceName: "setting"), t: "消息提醒", st: ""),
-            NorCellData(i: #imageLiteral(resourceName: "setting"), t: "其他设置", st: ""),
+            NorCellData(i: #imageLiteral(resourceName: "own_feedback"), t: "账号", st: ""),
+            NorCellData(i: #imageLiteral(resourceName: "own_feedback"), t: "隐私", st: ""),
+            NorCellData(i: #imageLiteral(resourceName: "own_feedback"), t: "消息提醒", st: ""),
+            NorCellData(i: #imageLiteral(resourceName: "own_feedback"), t: "其他设置", st: ""),
         ],
         [
-            NorCellData(i: #imageLiteral(resourceName: "setting"), t: "关于", st: ""),
-            NorCellData(i: #imageLiteral(resourceName: "setting"), t: "版本信息", st: ""),
+            NorCellData(i: #imageLiteral(resourceName: "own_setting"), t: "关于", st: ""),
+            NorCellData(i: #imageLiteral(resourceName: "own_setting"), t: "版本信息", st: ""),
         ],
         [
-            NorCellData(i: #imageLiteral(resourceName: "share"), t: "退出", st: ""),
+            NorCellData(i: #imageLiteral(resourceName: "own_setting"), t: "退出", st: ""),
         ],
     ]
 
@@ -77,44 +77,23 @@ class OwnController: BaseTabController, UserMgrObserver, UITableViewDelegate, UI
 
     private let DataObKey = "OwnController"
     override func initData() {
-        APP.userMgr.register(observer: self, key: DataObKey)
+        DataMgr.register(observer: self, key: DataObKey)
+        APP.userMgr.fetch(obKey: DataObKey) { suc, user in
+            onFetch(suc: suc, data: user)
+        }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        APP.userMgr.set(hide: false, key: DataObKey)
-    }
+    func onFetch(suc: Bool, data: User) {
+        if suc {
+            curUser = data
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        APP.userMgr.set(hide: true, key: DataObKey)
-    }
-
-    // observer ---------------------------------------------------------------------------------------------------
-
-    func onInit(user: User) {
-        curUser = user
-
-        infoHead.resetData(
-            bgImg: #imageLiteral(resourceName: "selfbg"),
-            avatarURL: curUser.avatarURL,
-            titleStr: curUser.name,
-            subTitleStr: curUser.sign
-        )
-
-        sectionNum = headCellNum + group.count
-        tableView.reloadData()
-    }
-
-    func onModify(user: User) {
-        curUser = user
-
-        infoHead.resetData(
-            bgImg: #imageLiteral(resourceName: "selfbg"),
-            avatarURL: curUser.avatarURL,
-            titleStr: curUser.name,
-            subTitleStr: curUser.sign
-        )
+            infoHead.resetData(
+                bgImg: #imageLiteral(resourceName: "selfbg"),
+                avatarURL: curUser.avatarURL,
+                titleStr: curUser.name,
+                subTitleStr: curUser.sign
+            )
+        }
     }
 
     // table view ---------------------------------------------------------------------------------------------------

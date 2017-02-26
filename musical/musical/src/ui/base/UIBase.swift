@@ -50,7 +50,7 @@ class UITools {
     }
 
     class func createNavBackBtn(_ vc: UIViewController, action: Selector) {
-        vc.navigationItem.leftBarButtonItem = UITools.createBarBtnItem(vc, action: action, image: #imageLiteral(resourceName: "go_back"))
+        vc.navigationItem.leftBarButtonItem = UITools.createBarBtnItem(vc, action: action, image: #imageLiteral(resourceName: "nav_back"))
     }
 
     class func showAlert(_ target: UIViewController, title: String?, msg: String?, type: Int, callback: ((UIAlertAction) -> Void)?, cancelCallback: ((UIAlertAction) -> Void)? = nil) {
