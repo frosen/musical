@@ -6,9 +6,9 @@
 //  Copyright © 2017年 fffff. All rights reserved.
 //
 
-let hue: CGFloat = 18
-let saturation: CGFloat = 0.76
-let brightness: CGFloat = 0.91
+let hue: CGFloat = 35
+let saturation: CGFloat = 0.98
+let brightness: CGFloat = 0.97
 
 let BaseColor: UIColor = UIColor(
     hue: hue / 360,
@@ -19,25 +19,14 @@ let BaseColor: UIColor = UIColor(
 
 let DarkColor: UIColor = UIColor(
     hue: (hue + 360 - 16).truncatingRemainder(dividingBy: 360.0) / 360,
-    saturation: saturation + 0.1,
-    brightness: brightness - 0.05,
-    alpha: 1.0
-)
-
-let LightColor: UIColor = UIColor(
-    hue: (hue + 360 + 16).truncatingRemainder(dividingBy: 360.0) / 360,
     saturation: saturation,
     brightness: brightness,
     alpha: 1.0
 )
 
-
 let TitleColor: UIColor = UIColor.black
 let SubTitleColor: UIColor = UIColor(white: 0.5, alpha: 1)
 let TextColor: UIColor = UIColor(white: 0.25, alpha: 1)
-
-let TitleFont: UIFont = UIFont.boldSystemFont(ofSize: 15)
-let TextFont: UIFont = UIFont.systemFont(ofSize: 13)
 
 class UITools {
     class func createBarBtnItem(_ target: AnyObject, action: Selector, image img: UIImage) -> UIBarButtonItem {
