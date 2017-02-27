@@ -10,6 +10,10 @@ import UIKit
 
 class UserMgr: DataMgr {
     func fetch(obKey: String, callback: ((Bool, User) -> Void)) {
-
+        let user = User(ID: "12345")
+        user.name = "明明"
+        user.avatarURL = ""
+        user.sign = "个性签名，啦啦啦"
+        callback(true, user)
     }
 }

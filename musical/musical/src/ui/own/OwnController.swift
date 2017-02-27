@@ -93,6 +93,9 @@ class OwnController: BaseTabController, DataOB, UITableViewDelegate, UITableView
                 titleStr: curUser.name,
                 subTitleStr: curUser.sign
             )
+
+            sectionNum = headCellNum + group.count
+            tableView.reloadData()
         }
     }
 
