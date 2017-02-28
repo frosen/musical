@@ -8,10 +8,6 @@
 
 import UIKit
 
-protocol InfoHeadViewDelegate {
-    func onClickInfoHeadViewAvatar()
-}
-
 class InfoHeadView: UIView {
     private var scrollView: UIScrollView
     private var extraHeight: CGFloat = 0
@@ -21,8 +17,6 @@ class InfoHeadView: UIView {
     private var avatar: Avatar! = nil
     private var title: UILabel! = nil
     private var subTitle: UILabel! = nil
-
-    var delegate: InfoHeadViewDelegate? = nil
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -73,13 +67,24 @@ class InfoHeadView: UIView {
         bg.frame = CGRect(x: 0, y: extraHeight - topMargin + bottomMargin, width: w, height: h + topMargin + bottomMargin + extraHeight)
         bg.contentMode = .scaleAspectFill
 
+        //头像
+        avatar = Avatar.create(rect: CGRect(
+                x: 0.5 * w - 0.5 * avatarW,
+                y: 0.42 * h - 0.5 * avatarW + extraHeight + bottomMargin,
+                width: avatarW,
+                height: avatarW
+            ),
+            name: "", url: ""
+        )
+        viewMask.addSubview(avatar)
+
+        avatar.layer.borderColor = UIColor.white.cgColor
+        avatar.layer.borderWidth = 2
+        avatar.layer.cornerRadius = avatarW / 2
+
         //名字
         title = UILabel()
         viewMask.addSubview(title)
-
-        title.bounds = CGRect(x: 0, y: bottomMargin, width: w, height: 0.2 * h)
-        title.center.x = 0.5 * w
-        title.center.y = 0.42 * h + extraHeight + bottomMargin + 55
 
         title.textAlignment = .center
         title.font = UIFont.systemFont(ofSize: 14.0)
@@ -93,10 +98,6 @@ class InfoHeadView: UIView {
         subTitle = UILabel()
         viewMask.addSubview(subTitle)
 
-        subTitle.bounds = CGRect(x: 0, y: bottomMargin, width: w, height: 0.1 * h)
-        subTitle.center.x = 0.5 * w
-        subTitle.center.y = 0.42 * h + extraHeight + bottomMargin + 80
-
         subTitle.textAlignment = NSTextAlignment.center
         subTitle.font = UIFont.systemFont(ofSize: 11.0)
         subTitle.textColor = UIColor.white
@@ -109,37 +110,15 @@ class InfoHeadView: UIView {
         let w: CGFloat = frame.size.width
         let h: CGFloat = frame.size.height
 
-        //头像
-        if avatar != nil {
-            avatar.removeFromSuperview()
-        }
-
-        avatar = Avatar.create(rect: CGRect(
-            x: 0.5 * w - 0.5 * avatarW,
-            y: 0.42 * h - 0.5 * avatarW + extraHeight + bottomMargin,
-            width: avatarW,
-            height: avatarW
-            ),
-            name: titleStr,
-            url: avatarURL
-        )
-        viewMask.addSubview(avatar)
-
-        avatar.layer.borderColor = UIColor.white.cgColor
-        avatar.layer.borderWidth = 2
-        avatar.layer.cornerRadius = avatarW / 2
-
-        let tap = UITapGestureRecognizer(target: self, action: #selector(InfoHeadView.tapAvatar(ges:)))
-        avatar.addGestureRecognizer(tap)
-
-        //其他属性
+        avatar.set(name: titleStr, url: avatarURL)
         bg.image = bgimg
         title.text = titleStr
-        subTitle.text = subTitleStr
-    }
+        title.sizeToFit()
+        title.center = CGPoint(x: 0.5 * w, y: 0.42 * h + extraHeight + bottomMargin + 55)
 
-    func tapAvatar(ges: UITapGestureRecognizer) {
-        delegate?.onClickInfoHeadViewAvatar()
+        subTitle.text = subTitleStr
+        subTitle.sizeToFit()
+        subTitle.center = CGPoint(x: 0.5 * w, y: 0.42 * h + extraHeight + bottomMargin + 80)
     }
 
     override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {

@@ -19,7 +19,7 @@ struct NorCellData {
     }
 }
 
-class OwnController: BaseTabController, DataOB, UITableViewDelegate, UITableViewDataSource, BaseCellDelegate, InfoHeadViewDelegate {
+class OwnController: BaseTabController, DataOB, UITableViewDelegate, UITableViewDataSource, BaseCellDelegate {
     //信息头，比赛成绩，QR，其他项目等group
     private let headCellNum: Int = 1
     private let group = [
@@ -71,7 +71,6 @@ class OwnController: BaseTabController, DataOB, UITableViewDelegate, UITableView
 
         //添加信息头
         infoHead = InfoHeadView(scrollView: tableView, extraHeight: 20)
-        infoHead.delegate = self
         baseView.insertSubview(infoHead, aboveSubview: tableView)
     }
 
