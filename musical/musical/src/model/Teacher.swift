@@ -11,5 +11,15 @@ import UIKit
 class Teacher: BaseData {
     static let classname = "teacher"
 
-    
+    var name: String = ""
+    var avatarUrl: String = ""
+
+    var location: Location = Location()
+    var courseNum: Int = 0
+
+    var teachAge: Int = 0
+    var selfDesc: String = ""
+
+    //
+    var priceList: [String: Int] = [:]
 }

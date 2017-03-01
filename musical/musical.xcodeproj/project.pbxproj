@@ -33,6 +33,7 @@
 		65891D471E5ECDED00920BF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65891D451E5ECDED00920BF6 /* LaunchScreen.storyboard */; };
 		65891D521E5ECDED00920BF6 /* musicalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65891D511E5ECDED00920BF6 /* musicalTests.swift */; };
 		65891D5D1E5ECDED00920BF6 /* musicalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65891D5C1E5ECDED00920BF6 /* musicalUITests.swift */; };
+		65BB6EFB1E669F6F0016F86A /* InfoBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BB6EFA1E669F6F0016F86A /* InfoBoard.swift */; };
 		C4D4FFDEA8D42F1D8D914D8C /* Pods_musical.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680892BBB233F83212EF62CC /* Pods_musical.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,6 +89,7 @@
 		65891D581E5ECDED00920BF6 /* musicalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = musicalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65891D5C1E5ECDED00920BF6 /* musicalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = musicalUITests.swift; sourceTree = "<group>"; };
 		65891D5E1E5ECDED00920BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		65BB6EFA1E669F6F0016F86A /* InfoBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoBoard.swift; sourceTree = "<group>"; };
 		680892BBB233F83212EF62CC /* Pods_musical.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_musical.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B420BCA4FA5C563D108ADF1E /* Pods-musical.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musical.release.xcconfig"; path = "Pods/Target Support Files/Pods-musical/Pods-musical.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -150,6 +152,7 @@
 				655C9CB11E62C4A000E62132 /* Avatar.swift */,
 				655C9C861E62A5CD00E62132 /* MyTabBar.swift */,
 				655C9C871E62A5CD00E62132 /* MyTabBarItem.swift */,
+				65BB6EFA1E669F6F0016F86A /* InfoBoard.swift */,
 			);
 			path = widget;
 			sourceTree = "<group>";
@@ -475,6 +478,7 @@
 				655C9C971E62ABE900E62132 /* ListCell.swift in Sources */,
 				655C9C901E62A8B400E62132 /* BaseController.swift in Sources */,
 				655C9C9D1E62ADC900E62132 /* OwnController.swift in Sources */,
+				65BB6EFB1E669F6F0016F86A /* InfoBoard.swift in Sources */,
 				655C9C9E1E62ADC900E62132 /* PersonalInfoController.swift in Sources */,
 				655C9CAC1E62B7CF00E62132 /* AppManager.swift in Sources */,
 				655C9CA11E62AE6900E62132 /* Teacher.swift in Sources */,
