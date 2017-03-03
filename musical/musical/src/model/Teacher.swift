@@ -23,5 +23,5 @@ class Teacher: BaseData {
     var trialNum: Int = 0
 
     // 价格
-    var priceList: [String: Int] = [:]
+    var priceList: [Int] = []
 }

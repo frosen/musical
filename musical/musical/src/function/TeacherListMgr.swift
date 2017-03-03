@@ -20,21 +20,24 @@ class TeacherListMgr: DataMgr {
 
         teacher = Teacher(ID: "123")
         teachers.append(teacher)
-        teacher.name = "大大"
+        teacher.name = "多多老师"
         teacher.teachAge = 8
-        teacher.selfDesc = "朗朗百名琴童总策划 专业钢琴教师 8年教龄 名校毕业"
+        teacher.selfDesc = "专业钢琴教师 8年教龄 名校毕业"
+        teacher.priceList = [200, 300]
 
         teacher = Teacher(ID: "123")
         teachers.append(teacher)
         teacher.name = "fengfeng"
         teacher.teachAge = 8
-        teacher.selfDesc = "朗朗百名琴童总策划 专业钢琴教师 8年教龄 名校毕业"
+        teacher.selfDesc = "专业钢琴教师 8年教龄 名校毕业 哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
+        teacher.priceList = [5200, 5300]
 
         teacher = Teacher(ID: "123")
         teachers.append(teacher)
         teacher.name = "海海"
         teacher.teachAge = 8
         teacher.selfDesc = "朗朗百名琴童总策划 专业钢琴教师 8年教龄 名校毕业"
+        teacher.priceList = [1, 11]
 
         return teachers
     }

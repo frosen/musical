@@ -63,7 +63,7 @@ class ListController: BaseTabController, DataOB, UITableViewDelegate, UITableVie
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 20 //数据行之间的留白
+        return (section != curTeachers.count - 1) ? 20 : 1 //数据行之间的留白
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

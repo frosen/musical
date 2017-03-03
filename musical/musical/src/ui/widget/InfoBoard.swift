@@ -23,8 +23,8 @@ class InfoBoard: UIView {
     private var descLbl: UILabel! = nil
     private var locationLbl: UILabel! = nil
 
-    private var lBtn: UIButton! = nil
-    private var rBtn: UIButton! = nil
+    private var lPrice: PriceView! = nil
+    private var rPrice: PriceView! = nil
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -86,7 +86,15 @@ class InfoBoard: UIView {
         locationLbl.layer.borderColor = UIColor.white.cgColor
 
         // 价格
-        
+        lPrice = PriceView(title: "学生家授课")
+        addSubview(lPrice)
+
+        let priceMargin: CGFloat = (InfoBoard.w - 2 * lPrice.frame.width) / 3
+        lPrice.frame.origin = CGPoint(x: priceMargin, y: descLbl.frame.origin.y + descLbl.frame.height)
+
+        rPrice = PriceView(title: "教师家授课")
+        addSubview(rPrice)
+        rPrice.frame.origin = CGPoint(x: InfoBoard.w / 2 + priceMargin / 2, y: descLbl.frame.origin.y + descLbl.frame.height)
     }
 
     func set(data: Teacher) {
@@ -95,12 +103,15 @@ class InfoBoard: UIView {
         nameLbl.text = data.name
         descLbl.text = data.selfDesc
 
-        locationLbl.text = " 朝阳 756米 "
+        locationLbl.text = " " + "朝阳 756米" + " "
         locationLbl.sizeToFit()
         locationLbl.frame.origin = CGPoint(
             x: InfoBoard.w - margin - locationLbl.frame.width,
             y: nameLbl.frame.origin.y + nameLbl.frame.height - 15
         )
+
+        lPrice.set(price: data.priceList[0])
+        rPrice.set(price: data.priceList[1])
     }
 
     private static var lblBgImg: UIImage? = nil
@@ -152,7 +163,37 @@ class InfoBoard: UIView {
     }
 }
 
+class PriceView: UIView {
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
+    var priceLbl: UILabel! = nil
+
+    init(title: String) {
+
+        let w: CGFloat = 137
+        let h: CGFloat = 44
+        super.init(frame: CGRect(x: 0, y: 0, width: w, height: h))
+
+        let titleLbl = UILabel(frame: CGRect(x: 0, y: 1, width: 65, height: h))
+        addSubview(titleLbl)
+        titleLbl.font = UIFont.systemFont(ofSize: 12)
+        titleLbl.textColor = UIColor.white
+        titleLbl.text = title
+
+        priceLbl = UILabel(frame: CGRect(x: 65, y: 0, width: 72, height: h))
+        addSubview(priceLbl)
+        priceLbl.font = UIFont.boldSystemFont(ofSize: 20)
+
+        set(price: 0)
+    }
+
+    func set(price: Int) {
+        priceLbl.text = "￥" + String(price)
+        priceLbl.textColor = price > 0 ? BaseColor : UIColor.lightGray
+    }
+}
 
 
 
