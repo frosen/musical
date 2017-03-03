@@ -13,7 +13,7 @@ class TeacherListMgr: DataMgr {
         callback(true, getTestData())
     }
 
-    func getTestData() -> [Teacher] {
+    private func getTestData() -> [Teacher] {
         var teachers: [Teacher] = []
 
         var teacher: Teacher

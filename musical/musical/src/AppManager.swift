@@ -13,6 +13,7 @@ class AppManager: NSObject {
     // 数据管理器
     private(set) var userMgr: UserMgr! = nil
     private(set) var teacherListMgr: TeacherListMgr! = nil
+    private(set) var teacherDetailMgr: TeacherDetailMgr! = nil
 
     //单例
     fileprivate static let shareInstance = AppManager()
@@ -29,6 +30,7 @@ class AppManager: NSObject {
 
         userMgr = UserMgr()
         teacherListMgr = TeacherListMgr()
+        teacherDetailMgr = TeacherDetailMgr()
     }
 }
 

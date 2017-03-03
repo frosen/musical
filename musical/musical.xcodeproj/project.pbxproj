@@ -33,6 +33,8 @@
 		65891D471E5ECDED00920BF6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 65891D451E5ECDED00920BF6 /* LaunchScreen.storyboard */; };
 		65891D521E5ECDED00920BF6 /* musicalTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65891D511E5ECDED00920BF6 /* musicalTests.swift */; };
 		65891D5D1E5ECDED00920BF6 /* musicalUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65891D5C1E5ECDED00920BF6 /* musicalUITests.swift */; };
+		6589CA561E6960610046C143 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589CA511E6960610046C143 /* DetailViewController.swift */; };
+		6589CA581E6962520046C143 /* TeacherDetailMgr.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6589CA571E6962520046C143 /* TeacherDetailMgr.swift */; };
 		65BB6EFB1E669F6F0016F86A /* InfoBoard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65BB6EFA1E669F6F0016F86A /* InfoBoard.swift */; };
 		C4D4FFDEA8D42F1D8D914D8C /* Pods_musical.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 680892BBB233F83212EF62CC /* Pods_musical.framework */; };
 /* End PBXBuildFile section */
@@ -89,6 +91,8 @@
 		65891D581E5ECDED00920BF6 /* musicalUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = musicalUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		65891D5C1E5ECDED00920BF6 /* musicalUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = musicalUITests.swift; sourceTree = "<group>"; };
 		65891D5E1E5ECDED00920BF6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		6589CA511E6960610046C143 /* DetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		6589CA571E6962520046C143 /* TeacherDetailMgr.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TeacherDetailMgr.swift; sourceTree = "<group>"; };
 		65BB6EFA1E669F6F0016F86A /* InfoBoard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InfoBoard.swift; sourceTree = "<group>"; };
 		680892BBB233F83212EF62CC /* Pods_musical.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_musical.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B420BCA4FA5C563D108ADF1E /* Pods-musical.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musical.release.xcconfig"; path = "Pods/Target Support Files/Pods-musical/Pods-musical.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +144,7 @@
 				655C9C8A1E62A8B400E62132 /* base */,
 				655C9C931E62AB8A00E62132 /* list */,
 				655C9C941E62AB9F00E62132 /* own */,
+				6589CA4C1E6960610046C143 /* detail */,
 				655C9C851E62A5CD00E62132 /* widget */,
 			);
 			path = ui;
@@ -203,6 +208,7 @@
 				655C9CA71E62B37100E62132 /* DataMgr.swift */,
 				655C9CAF1E62C1BD00E62132 /* UserMgr.swift */,
 				655C9CA91E62B62D00E62132 /* TeacherListMgr.swift */,
+				6589CA571E6962520046C143 /* TeacherDetailMgr.swift */,
 			);
 			path = function;
 			sourceTree = "<group>";
@@ -256,6 +262,14 @@
 				65891D5E1E5ECDED00920BF6 /* Info.plist */,
 			);
 			path = musicalUITests;
+			sourceTree = "<group>";
+		};
+		6589CA4C1E6960610046C143 /* detail */ = {
+			isa = PBXGroup;
+			children = (
+				6589CA511E6960610046C143 /* DetailViewController.swift */,
+			);
+			path = detail;
 			sourceTree = "<group>";
 		};
 		6775BE09B033BEA53E4BD1D3 /* Pods */ = {
@@ -478,6 +492,7 @@
 				655C9C971E62ABE900E62132 /* ListCell.swift in Sources */,
 				655C9C901E62A8B400E62132 /* BaseController.swift in Sources */,
 				655C9C9D1E62ADC900E62132 /* OwnController.swift in Sources */,
+				6589CA581E6962520046C143 /* TeacherDetailMgr.swift in Sources */,
 				65BB6EFB1E669F6F0016F86A /* InfoBoard.swift in Sources */,
 				655C9C9E1E62ADC900E62132 /* PersonalInfoController.swift in Sources */,
 				655C9CAC1E62B7CF00E62132 /* AppManager.swift in Sources */,
@@ -485,6 +500,7 @@
 				655C9C881E62A5CD00E62132 /* MyTabBar.swift in Sources */,
 				655C9CA81E62B37100E62132 /* DataMgr.swift in Sources */,
 				655C9CAA1E62B62D00E62132 /* TeacherListMgr.swift in Sources */,
+				6589CA561E6960610046C143 /* DetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
