@@ -70,8 +70,9 @@ class DetailViewController: BaseController, DataOB, UITableViewDelegate, UITable
 
     private let staticVarCellIndexList = [
         IndexPath(row: 0, section: 0),
-        IndexPath(row: 2, section: 1),
-        IndexPath(row: 1, section: 2)
+        IndexPath(row: 0, section: 1),
+        IndexPath(row: 1, section: 3),
+        IndexPath(row: 1, section: 4)
     ] // 静态cell，但是又需要通过setData变化的
 
     func onFetchData(suc: Bool, data: Teacher?) {
@@ -90,86 +91,6 @@ class DetailViewController: BaseController, DataOB, UITableViewDelegate, UITable
         tableView.reloadData()
     }
 
-    // cell 滑动优化相关 ==============================================================================
-
-//
-//    // 优化高度获取，避免每次都进行计算
-//    private(set) var cellHeightDict: [Int: CGFloat] = [:]
-//    func getCellHeightDictIndex(section: Int, row: Int) -> Int {
-//        return section * 1000 + row
-//    }
-//
-//    // 优化cell的获取，配合StaticCell的needUpdate属性，只有需要更新的时候再调用，可以大幅度优化性能
-//    private var cellNeedUpdate: [IndexPath: Bool] = [:]
-//
-//    // ActiveEventsMgrObserver ==============================================================================
-//
-//    func onInit(actE: ActEvents) {
-//        guard let e = actE.getCurEvent(curId: curEventId) else {
-//            return
-//        }
-//
-//        sectionNum = 4
-//        curEvent = e
-//        cellHeightDict.removeAll()
-//
-//        // 预生成这些static cell，避免第一次滑动造成的卡顿
-//        for indexPath in staticVarCellIndexList {
-//            let _ = StaticCell.create(indexPath, tableView: tableView, data: curEvent, ctrlr: self, delegate: self)
-//        }
-//
-//        // 加载未发送成功的临时msgCell
-//        if APP.msgMgr.tmpMsgListDict[curEventId] == nil {
-//            APP.msgMgr.tmpMsgListDict[curEventId] = MsgMgr.MsgStructList()
-//        }
-//        tmpMsgList = APP.msgMgr.tmpMsgListDict[curEventId]!
-//
-//        // 刷新
-//        tableView.reloadData()
-//
-//        // toolbar
-//        actBtnBoard.set(event: e)
-//        let st = APP.userMgr.getMeState(e)
-//        actBtnBoard.set(state: st)
-//
-//        handleEventChange()
-//    }
-//
-//    func onModify(actE: ActEvents) {
-//        guard let e = actE.getCurEvent(curId: curEventId) else {
-//            return
-//        }
-//
-//        curEvent = e
-//
-//        tableView.beginUpdates()
-//
-//        // team和瞬间的更新
-//        for indexPath in staticVarCellIndexList {
-//            cellHeightDict.removeValue(forKey: getCellHeightDictIndex(section: indexPath.section, row: indexPath.row))
-//            cellNeedUpdate[indexPath] = true
-//        }
-//        tableView.reloadRows(at: staticVarCellIndexList, with: .none)
-//
-//        tableView.endUpdates()
-//
-//        // 状态
-//        let st = APP.userMgr.getMeState(e)
-//        actBtnBoard.set(state: st)
-//        if let titleCell = tableView.cellForRow(at: IndexPath(row: 0, section: 0)) as? DetailTitleCell {
-//            titleCell.set(state: st)
-//        }
-//
-//        handleEventChange()
-//    }
-//
-//    private func handleEventChange() {
-//        // 动画显示状态变化
-//
-//        // 在显示着这个event的细节时更新，显示更新并结束提示
-//        APP.activeEventsMgr.clearEventChange(curEventId)
-//    }
-//
     // table view delegate ==========================================================================================
 
     func numberOfSections(in tableView: UITableView) -> Int {
