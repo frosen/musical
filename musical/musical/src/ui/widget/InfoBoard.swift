@@ -10,22 +10,17 @@ import UIKit
 
 class InfoBoard: UIView {
 
-    private static let w: CGFloat = UIScreen.main.bounds.width
-    private static let h: CGFloat = 115
+    static let w: CGFloat = UIScreen.main.bounds.width
+    static let h: CGFloat = UIScreen.main.bounds.width / 375 * 260
 
-    private static let upH: CGFloat = 80
-
-    private static let margin: CGFloat = 6
-    private static let iconWidth: CGFloat = upH - margin - margin
-
-    private static let btnMargin: CGFloat = 12
+    private let margin: CGFloat = 20
+    private let lblH: CGFloat = 125
 
     // ----------------------------------------------
 
     private var icon: UIImageView! = nil
     private var nameLbl: UILabel! = nil
     private var descLbl: UILabel! = nil
-    private var courseNumLbl: UILabel! = nil
     private var locationLbl: UILabel! = nil
 
     private var lBtn: UIButton! = nil
@@ -37,125 +32,123 @@ class InfoBoard: UIView {
 
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: InfoBoard.w, height: InfoBoard.h))
+        print(frame, UIScreen.main.bounds)
 
         backgroundColor = UIColor.white // 因为EventBoard会移动，在移动时候不显示下面的控件，所以不能透明
 
-        icon = UIImageView(frame: CGRect(
-            x: InfoBoard.margin,
-            y: InfoBoard.margin,
-            width: InfoBoard.iconWidth,
-            height: InfoBoard.iconWidth
-        ))
+        // 背景icon
+        icon = UIImageView(frame: frame)
         addSubview(icon)
 
-        let lblX = icon.frame.origin.x + icon.frame.width + 15
-        let lblWidth = InfoBoard.w - InfoBoard.margin - lblX
+        // 文本
+        let lblBg = UIImageView(image: InfoBoard.createLblBgImg())
+        addSubview(lblBg)
+        lblBg.frame = CGRect(x: 0, y: InfoBoard.h - lblH, width: InfoBoard.w, height: lblH)
 
-        nameLbl = UILabel()
+        nameLbl = UILabel(frame: CGRect(x: margin, y: InfoBoard.h - lblH, width: 300, height: 44))
         addSubview(nameLbl)
-        nameLbl.frame = CGRect(x: lblX, y: InfoBoard.margin, width: lblWidth, height: 26)
-        nameLbl.font = UIFont.boldSystemFont(ofSize: 18)
-        nameLbl.textColor = TitleColor
+        nameLbl.font = UIFont.systemFont(ofSize: 30)
+        nameLbl.textColor = UIColor.white
         nameLbl.textAlignment = .left
 
-        descLbl = UILabel()
+        let line = UIView(frame: CGRect(
+            x: margin,
+            y: nameLbl.frame.origin.y + nameLbl.frame.height + 5,
+            width: 40,
+            height: 1
+        ))
+        addSubview(line)
+        line.backgroundColor = BaseColor
+
+        descLbl = UILabel(frame: CGRect(
+            x: margin,
+            y: nameLbl.frame.origin.y + nameLbl.frame.height + 10,
+            width: InfoBoard.w - margin * 2,
+            height: 25
+        ))
         addSubview(descLbl)
-        descLbl.frame = CGRect(x: lblX, y: nameLbl.frame.origin.y + nameLbl.frame.height, width: lblWidth, height: 21)
-        descLbl.font = UIFont.systemFont(ofSize: 13)
-        descLbl.textColor = TextColor
+
+        descLbl.font = UIFont.systemFont(ofSize: 12)
+        descLbl.textColor = UIColor.white
         descLbl.textAlignment = .left
 
         descLbl.numberOfLines = 1
         descLbl.lineBreakMode = .byTruncatingTail
 
-        courseNumLbl = UILabel()
-        addSubview(courseNumLbl)
-        courseNumLbl.frame = CGRect(x: lblX, y: descLbl.frame.origin.y + descLbl.frame.height, width: lblWidth, height: 21)
-        courseNumLbl.font = UIFont.systemFont(ofSize: 13)
-        courseNumLbl.textColor = BaseColor
-        courseNumLbl.textAlignment = .left
-
         locationLbl = UILabel()
         addSubview(locationLbl)
 
-        locationLbl.frame = courseNumLbl.frame
-        locationLbl.frame.size.width -= 15
+        locationLbl.font = UIFont.systemFont(ofSize: 12)
+        locationLbl.textColor = UIColor.white
 
-        locationLbl.font = UIFont.systemFont(ofSize: 13)
-        locationLbl.textColor = DarkColor
-        locationLbl.textAlignment = .right
+        locationLbl.layer.cornerRadius = 3
+        locationLbl.layer.borderWidth = 0.5
+        locationLbl.layer.borderColor = UIColor.white.cgColor
 
-        // 按钮
-        let btnMid = InfoBoard.upH + (InfoBoard.h - InfoBoard.upH) / 2
-
-        lBtn = createPriceBtn(title: "学生家授课", action: #selector(InfoBoard.onClickLeftBtn))
-        addSubview(lBtn)
-        lBtn.frame.origin.x = InfoBoard.btnMargin
-        lBtn.center.y = btnMid
-
-        rBtn = createPriceBtn(title: "教师家授课", action: #selector(InfoBoard.onClickRightBtn))
-        addSubview(rBtn)
-        rBtn.frame.origin.x = InfoBoard.w / 2 + InfoBoard.btnMargin / 2
-        rBtn.center.y = btnMid
-    }
-
-    func createPriceBtn(title: String, action: Selector) -> UIButton {
-        let btnH: CGFloat = 25
-
-        let btn = UIButton(type: .custom)
-
-        btn.frame.size = CGSize(width: InfoBoard.w / 2 - InfoBoard.btnMargin * 1.5, height: btnH)
-
-        btn.addTarget(self, action: action, for: .touchUpInside)
-
-        btn.layer.cornerRadius = 7
-        btn.layer.borderColor = BaseColor.cgColor
-        btn.layer.borderWidth = 0.5
-
-        let titleLbl = UILabel()
-        btn.addSubview(titleLbl)
-
-        titleLbl.text = title
-        titleLbl.frame.size = CGSize(width: 60, height: btnH)
-        titleLbl.frame.origin.x = 5
-        titleLbl.center.y = btnH / 2
-        titleLbl.tag = 1
-
-        titleLbl.font = UIFont.systemFont(ofSize: 11)
-        titleLbl.textColor = TextColor
-
-        let priceLbl = UILabel()
-        btn.addSubview(priceLbl)
-
-        priceLbl.font = UIFont.systemFont(ofSize: 14)
-        priceLbl.textColor = BaseColor
-        priceLbl.tag = 2
-
-        priceLbl.text = "￥150.00"
-        priceLbl.sizeToFit()
-        priceLbl.frame.origin.x = titleLbl.frame.origin.x + titleLbl.frame.width
-        priceLbl.center.y = titleLbl.center.y
-
-        return btn
+        // 价格
+        
     }
 
     func set(data: Teacher) {
-        icon.sd_setImage(with: URL(string: data.avatarUrl), placeholderImage: #imageLiteral(resourceName: "img_default"))
+        icon.sd_setImage(with: URL(string: data.avatarUrl), placeholderImage: #imageLiteral(resourceName: "teacher_bg"))
 
         nameLbl.text = data.name
         descLbl.text = data.selfDesc
-        courseNumLbl.text = String(format: "正在授课: %d时/周", data.courseNum)
-        locationLbl.text = "朝阳"
 
-
+        locationLbl.text = " 朝阳 756米 "
+        locationLbl.sizeToFit()
+        locationLbl.frame.origin = CGPoint(
+            x: InfoBoard.w - margin - locationLbl.frame.width,
+            y: nameLbl.frame.origin.y + nameLbl.frame.height - 15
+        )
     }
 
-    func onClickLeftBtn() {
+    private static var lblBgImg: UIImage? = nil
+    private static func createLblBgImg() -> UIImage {
+        if lblBgImg != nil {
+            return lblBgImg!
+        }
 
-    }
+        let gSize: CGSize = CGSize(width: w, height: h)
 
-    func onClickRightBtn() {
+        //创建CGContextRef
+        UIGraphicsBeginImageContext(gSize)
+        let context = UIGraphicsGetCurrentContext()!
 
+        //创建CGMutablePathRef
+        let path = CGMutablePath()
+
+        // 绘制Path
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: gSize.width, y: 0))
+        path.addLine(to: CGPoint(x: gSize.width, y: gSize.height))
+        path.addLine(to: CGPoint(x: 0, y: gSize.height))
+        path.addLine(to: CGPoint(x: 0, y: 0))
+        path.closeSubpath()
+
+        // 颜色和方向
+        let colors: NSArray = [UIColor.clear.cgColor, UIColor(white: 0.0, alpha: 0.5).cgColor]
+        let colorArray: CFArray = colors as CFArray
+        let location: UnsafePointer<CGFloat> = UnsafePointer<CGFloat>([0.0, 1.0])
+
+        let colorSpace = CGColorSpaceCreateDeviceRGB()
+        let gradient = CGGradient(colorsSpace: colorSpace, colors: colorArray, locations: location)!
+
+        let startPoint = CGPoint(x: 0, y: 0)
+        let endPoint = CGPoint(x: 0, y: gSize.height)
+        context.saveGState()
+        context.addPath(path)
+        context.clip()
+        context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: CGGradientDrawingOptions(rawValue: 0))
+        context.restoreGState()
+
+        // 获取图像
+        lblBgImg = UIGraphicsGetImageFromCurrentImageContext()!
+
+        // 结束
+        UIGraphicsEndImageContext()
+        
+        return lblBgImg!
     }
 }
 

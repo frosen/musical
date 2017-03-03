@@ -13,7 +13,7 @@ class ListCell: BaseCell {
     private var infoBoard: InfoBoard! = nil
 
     override class func getCellHeight(_ d: BaseData? = nil, index: IndexPath? = nil, otherData: Any? = nil) -> CGFloat {
-        return 108
+        return InfoBoard.h
     }
 
     override func initData(_ d: BaseData?, index: IndexPath?) {
@@ -40,3 +40,9 @@ class ListCell: BaseCell {
         }
     }
 }
+
+
+
+
+
+

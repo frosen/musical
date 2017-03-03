@@ -15,11 +15,13 @@ class Teacher: BaseData {
     var avatarUrl: String = ""
 
     var location: Location = Location()
-    var courseNum: Int = 0
 
     var teachAge: Int = 0
     var selfDesc: String = ""
 
-    //
+    var courseNum: Int = 0
+    var trialNum: Int = 0
+
+    // 价格
     var priceList: [String: Int] = [:]
 }
