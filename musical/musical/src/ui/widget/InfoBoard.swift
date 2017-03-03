@@ -10,11 +10,12 @@ import UIKit
 
 class InfoBoard: UIView {
 
+    static let rate: CGFloat = UIScreen.main.bounds.width / 375
     static let w: CGFloat = UIScreen.main.bounds.width
-    static let h: CGFloat = UIScreen.main.bounds.width / 375 * 260
+    static let h: CGFloat = 250 * rate
 
     private let margin: CGFloat = 20
-    private let lblH: CGFloat = 125
+    private let lblH: CGFloat = 125 * rate
 
     // ----------------------------------------------
 
@@ -32,7 +33,6 @@ class InfoBoard: UIView {
 
     init() {
         super.init(frame: CGRect(x: 0, y: 0, width: InfoBoard.w, height: InfoBoard.h))
-        print(frame, UIScreen.main.bounds)
 
         backgroundColor = UIColor.white // 因为EventBoard会移动，在移动时候不显示下面的控件，所以不能透明
 
@@ -45,15 +45,16 @@ class InfoBoard: UIView {
         addSubview(lblBg)
         lblBg.frame = CGRect(x: 0, y: InfoBoard.h - lblH, width: InfoBoard.w, height: lblH)
 
-        nameLbl = UILabel(frame: CGRect(x: margin, y: InfoBoard.h - lblH, width: 300, height: 44))
+        let font = UIFont.systemFont(ofSize: 25)
+        nameLbl = UILabel(frame: CGRect(x: margin, y: InfoBoard.h - lblH, width: 300, height: font.lineHeight))
         addSubview(nameLbl)
-        nameLbl.font = UIFont.systemFont(ofSize: 30)
+        nameLbl.font = font
         nameLbl.textColor = UIColor.white
         nameLbl.textAlignment = .left
 
         let line = UIView(frame: CGRect(
             x: margin,
-            y: nameLbl.frame.origin.y + nameLbl.frame.height + 5,
+            y: nameLbl.frame.origin.y + nameLbl.frame.height + 12 * InfoBoard.rate,
             width: 40,
             height: 1
         ))
@@ -62,7 +63,7 @@ class InfoBoard: UIView {
 
         descLbl = UILabel(frame: CGRect(
             x: margin,
-            y: nameLbl.frame.origin.y + nameLbl.frame.height + 10,
+            y: nameLbl.frame.origin.y + nameLbl.frame.height + 24 * InfoBoard.rate,
             width: InfoBoard.w - margin * 2,
             height: 25
         ))
@@ -89,12 +90,13 @@ class InfoBoard: UIView {
         lPrice = PriceView(title: "学生家授课")
         addSubview(lPrice)
 
+        let priceY = (InfoBoard.h + descLbl.frame.origin.y + descLbl.frame.height - lPrice.frame.height) / 2
         let priceMargin: CGFloat = (InfoBoard.w - 2 * lPrice.frame.width) / 3
-        lPrice.frame.origin = CGPoint(x: priceMargin, y: descLbl.frame.origin.y + descLbl.frame.height)
+        lPrice.frame.origin = CGPoint(x: priceMargin, y: priceY)
 
         rPrice = PriceView(title: "教师家授课")
         addSubview(rPrice)
-        rPrice.frame.origin = CGPoint(x: InfoBoard.w / 2 + priceMargin / 2, y: descLbl.frame.origin.y + descLbl.frame.height)
+        rPrice.frame.origin = CGPoint(x: InfoBoard.w / 2 + priceMargin / 2, y: priceY)
     }
 
     func set(data: Teacher) {
@@ -105,9 +107,10 @@ class InfoBoard: UIView {
 
         locationLbl.text = " " + "朝阳 756米" + " "
         locationLbl.sizeToFit()
+
         locationLbl.frame.origin = CGPoint(
             x: InfoBoard.w - margin - locationLbl.frame.width,
-            y: nameLbl.frame.origin.y + nameLbl.frame.height - 15
+            y: nameLbl.frame.origin.y + nameLbl.frame.height - locationLbl.frame.height
         )
 
         lPrice.set(price: data.priceList[0])
