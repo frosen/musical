@@ -45,7 +45,7 @@ class InfoBoard: UIView {
         addSubview(lblBg)
         lblBg.frame = CGRect(x: 0, y: InfoBoard.h - lblH, width: InfoBoard.w, height: lblH)
 
-        let font = UIFont.systemFont(ofSize: 25)
+        let font = UIFont.systemFont(ofSize: 25.0 * InfoBoard.rate)
         nameLbl = UILabel(frame: CGRect(x: margin, y: InfoBoard.h - lblH, width: 300, height: font.lineHeight))
         addSubview(nameLbl)
         nameLbl.font = font
@@ -69,7 +69,7 @@ class InfoBoard: UIView {
         ))
         addSubview(descLbl)
 
-        descLbl.font = UIFont.systemFont(ofSize: 12)
+        descLbl.font = UIFont.systemFont(ofSize: 12.0 * InfoBoard.rate)
         descLbl.textColor = UIColor.white
         descLbl.textAlignment = .left
 
@@ -79,7 +79,7 @@ class InfoBoard: UIView {
         locationLbl = UILabel()
         addSubview(locationLbl)
 
-        locationLbl.font = UIFont.systemFont(ofSize: 12)
+        locationLbl.font = UIFont.systemFont(ofSize: 12.0 * InfoBoard.rate)
         locationLbl.textColor = UIColor.white
 
         locationLbl.layer.cornerRadius = 3
@@ -87,14 +87,14 @@ class InfoBoard: UIView {
         locationLbl.layer.borderColor = UIColor.white.cgColor
 
         // 价格
-        lPrice = PriceView(title: "学生家授课")
+        lPrice = PriceView(title: "学生家授课", rate: InfoBoard.rate)
         addSubview(lPrice)
 
         let priceY = (InfoBoard.h + descLbl.frame.origin.y + descLbl.frame.height - lPrice.frame.height) / 2
         let priceMargin: CGFloat = (InfoBoard.w - 2 * lPrice.frame.width) / 3
         lPrice.frame.origin = CGPoint(x: priceMargin, y: priceY)
 
-        rPrice = PriceView(title: "教师家授课")
+        rPrice = PriceView(title: "教师家授课", rate: InfoBoard.rate)
         addSubview(rPrice)
         rPrice.frame.origin = CGPoint(x: InfoBoard.w / 2 + priceMargin / 2, y: priceY)
     }
@@ -113,8 +113,28 @@ class InfoBoard: UIView {
             y: nameLbl.frame.origin.y + nameLbl.frame.height - locationLbl.frame.height
         )
 
-        lPrice.set(price: data.priceList[0])
-        rPrice.set(price: data.priceList[1])
+        // 获取其中最低价
+        let highPrice: Int = 99999
+        var atTchLowPrice: Int = highPrice
+        var atStuLowPrice: Int = highPrice
+        for p in data.priceList {
+            if p.atStuHome < atStuLowPrice {
+                atStuLowPrice = p.atStuHome
+            }
+            if p.atTchHome < atTchLowPrice {
+                atTchLowPrice = p.atTchHome
+            }
+        }
+        if atStuLowPrice == highPrice {
+            atStuLowPrice = 0
+        }
+        if atTchLowPrice == highPrice {
+            atTchLowPrice = 0
+        }
+
+        // 设置价格
+        lPrice.set(price: atStuLowPrice)
+        rPrice.set(price: atTchLowPrice)
     }
 
     private static var lblBgImg: UIImage? = nil
@@ -171,30 +191,53 @@ class PriceView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    var titleLbl: UILabel! = nil
     var priceLbl: UILabel! = nil
+    var lblEnd: UILabel! = nil
 
-    init(title: String) {
+    init(title: String, rate: CGFloat) {
 
         let w: CGFloat = 137
         let h: CGFloat = 44
         super.init(frame: CGRect(x: 0, y: 0, width: w, height: h))
 
-        let titleLbl = UILabel(frame: CGRect(x: 0, y: 1, width: 65, height: h))
+        titleLbl = UILabel()
         addSubview(titleLbl)
-        titleLbl.font = UIFont.systemFont(ofSize: 12)
+        titleLbl.font = UIFont.systemFont(ofSize: 12.0 * rate)
         titleLbl.textColor = UIColor.white
         titleLbl.text = title
 
-        priceLbl = UILabel(frame: CGRect(x: 65, y: 0, width: 72, height: h))
-        addSubview(priceLbl)
-        priceLbl.font = UIFont.boldSystemFont(ofSize: 20)
+        titleLbl.sizeToFit()
+        titleLbl.frame.size.width = 65
+        titleLbl.frame.origin.x = 0
+        titleLbl.center.y = h / 2
 
-        set(price: 0)
+        priceLbl = UILabel()
+        addSubview(priceLbl)
+        priceLbl.font = UIFont.boldSystemFont(ofSize: 20.0 * rate)
+
+        lblEnd = UILabel()
+        addSubview(lblEnd)
+        lblEnd.font = UIFont.systemFont(ofSize: 12.0 * rate)
+        lblEnd.textColor = BaseColor
+        lblEnd.text = "起"
+        lblEnd.sizeToFit()
     }
 
     func set(price: Int) {
         priceLbl.text = "￥" + String(price)
         priceLbl.textColor = price > 0 ? BaseColor : UIColor.lightGray
+
+        priceLbl.sizeToFit()
+        priceLbl.frame.origin = CGPoint(
+            x: titleLbl.frame.origin.x + titleLbl.frame.width,
+            y: titleLbl.frame.origin.y + titleLbl.frame.height - priceLbl.frame.height + 3
+        )
+
+        lblEnd.frame.origin = CGPoint(
+            x: priceLbl.frame.origin.x + priceLbl.frame.width,
+            y: titleLbl.frame.origin.y + titleLbl.frame.height - lblEnd.frame.height
+        )
     }
 }
 

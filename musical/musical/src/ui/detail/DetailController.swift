@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DetailViewController: BaseController, DataOB, UITableViewDelegate, UITableViewDataSource, StaticCellDelegate {
+class DetailController: BaseController, DataOB, UITableViewDelegate, UITableViewDataSource, StaticCellDelegate {
 
     private var sectionNum: Int = 0
 
@@ -33,7 +33,7 @@ class DetailViewController: BaseController, DataOB, UITableViewDelegate, UITable
         super.viewDidLoad()
         print("详情页面")
 
-        UITools.createNavBackBtn(self, action: #selector(DetailViewController.onBack))
+        UITools.createNavBackBtn(self, action: #selector(DetailController.onBack), isDark: true)
 
 //        baseView.isUserInteractionEnabled = false
 //        callbackOnFinishInit = { _ in
@@ -50,7 +50,7 @@ class DetailViewController: BaseController, DataOB, UITableViewDelegate, UITable
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false //隐藏滑动条
         tableView.backgroundColor = UIColor.white
-        tableView.bounces = false
+//        tableView.bounces = false
 
         //按钮栏
 //        toolbar = BaseToolbar()
@@ -70,9 +70,9 @@ class DetailViewController: BaseController, DataOB, UITableViewDelegate, UITable
 
     private let staticVarCellIndexList = [
         IndexPath(row: 0, section: 0),
-        IndexPath(row: 0, section: 1),
-        IndexPath(row: 1, section: 3),
-        IndexPath(row: 1, section: 4)
+        IndexPath(row: 1, section: 0),
+        IndexPath(row: 1, section: 2),
+        IndexPath(row: 1, section: 3)
     ] // 静态cell，但是又需要通过setData变化的
 
     func onFetchData(suc: Bool, data: Teacher?) {
@@ -81,7 +81,7 @@ class DetailViewController: BaseController, DataOB, UITableViewDelegate, UITable
         }
 
         curTeacher = data
-        sectionNum = 6
+        sectionNum = 5
 
         // 预生成这些static cell，避免第一次滑动造成的卡顿
         for indexPath in staticVarCellIndexList {
@@ -98,23 +98,20 @@ class DetailViewController: BaseController, DataOB, UITableViewDelegate, UITable
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        let rowNum: Int
-//        switch section {
-//        case 0:
-//            rowNum = 5 //title + detail + promise + time + location
-//        case 1:
-//            //head 友 敌 ob. 如果是乱斗应该是不分敌友的所以是2行，但暂时不考虑；
-//            rowNum = 4 //友一定有自己，敌和ob如果没有也有个标题表示没有的状态
-//        case 2:
-//            rowNum = 2 // head body 就算是没有图片时，也应该有个默认的图
-//        case 3:
-//            rowNum = 2 + tmpMsgList.list.count + (msgContainer?.msgList.count ?? 0) // head + tail + 临时对话(s) + 对话(s)
-//        default:
-//            rowNum = 0
-//        }
-////        print("TTT section\(section) has \(rowNum) rows")
-//        return rowNum
-        return 1
+        let rowNum: Int
+        switch section {
+        case 0:
+            rowNum = 2 // head state
+        case 1:
+            rowNum = 1 + curTeacher.priceList.count // price
+        case 2:
+            rowNum = 2 // map
+        case 3:
+            rowNum = 2 // time
+        default:
+            rowNum = 1 + curTeacher.imgList.count
+        }
+        return rowNum
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -126,25 +123,8 @@ class DetailViewController: BaseController, DataOB, UITableViewDelegate, UITable
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        let s = indexPath.section
-//        let r = indexPath.row
-//        if let h = cellHeightDict[getCellHeightDictIndex(section: s, row: r)] {
-////            print("TTT indexPath \(indexPath) height is \(h) (old)")
-//            return h
-//        }
-//
-//        var data: BaseData = curEvent
-//        if s == msgSectionIndex { // msg的cell使用不同的数据源
-//            if let msgStru = getMsgCellData(by: r) {
-//                data = msgStru
-//            }
-//        }
-//        let height: CGFloat = (getCInfo(indexPath).cls as! BaseCell.Type).getCellHeight(data, index: indexPath, otherData: self)
-//
-//        cellHeightDict[getCellHeightDictIndex(section: s, row: r)] = height
-////        print("TTT indexPath \(indexPath) height is \(height)")
-//        return height
-        return 44
+        let h = (getCInfo(indexPath).cls as! BaseCell.Type).getCellHeight(curTeacher, index: indexPath, otherData: self)
+        return h
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -154,7 +134,43 @@ class DetailViewController: BaseController, DataOB, UITableViewDelegate, UITable
     // BaseCellDelegate --------------------------------------------------------------
 
     func getCInfo(_ indexPath: IndexPath) -> BaseCell.CInfo {
-        return BaseCell.CInfo(id: "11", c: DetailViewController.self)
+        switch indexPath.section {
+        case 0:
+            switch indexPath.row {
+            case 0:
+                return BaseCell.CInfo(id: "head", c: DetailHeadCell.self)
+            default:
+                return BaseCell.CInfo(id: "state", c: DetailStateCell.self)
+            }
+        case 1:
+            switch indexPath.row {
+            case 0:
+                return BaseCell.CInfo(id: "priceT", c: DetailPriceTitleCell.self)
+            default:
+                return BaseCell.CInfo(id: "price", c: DetailPriceCell.self)
+            }
+        case 2:
+            switch indexPath.row {
+            case 0:
+                return BaseCell.CInfo(id: "timeT", c: DetailTimeTitleCell.self)
+            default:
+                return BaseCell.CInfo(id: "time", c: DetailTimeCell.self)
+            }
+        case 3:
+            switch indexPath.row {
+            case 0:
+                return BaseCell.CInfo(id: "mapT", c: DetailMapTitleCell.self)
+            default:
+                return BaseCell.CInfo(id: "map", c: DetailMapCell.self)
+            }
+        default:
+            switch indexPath.row {
+            case 0:
+                return BaseCell.CInfo(id: "imgT", c: DetailImgTitleCell.self)
+            default:
+                return BaseCell.CInfo(id: "img", c: DetailImgCell.self)
+            }
+        }
     }
 
     func getIfUpdate(_ indexPath: IndexPath) -> Bool {

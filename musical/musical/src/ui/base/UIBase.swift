@@ -29,17 +29,23 @@ let SubTitleColor: UIColor = UIColor(white: 0.5, alpha: 1)
 let TextColor: UIColor = UIColor(white: 0.25, alpha: 1)
 
 class UITools {
-    class func createBarBtnItem(_ target: AnyObject, action: Selector, image img: UIImage) -> UIBarButtonItem {
+    class func createBarBtnItem(_ target: AnyObject, action: Selector, image img: UIImage, isDark: Bool = false) -> UIBarButtonItem {
         let btn = UIButton(type: .custom)
         btn.addTarget(target, action: action, for: .touchUpInside)
-        btn.setBackgroundImage(img, for: UIControlState())
-        let bSize = btn.currentBackgroundImage!.size
-        btn.bounds = CGRect(x: 0, y: 0, width: bSize.width, height: bSize.height)
+        btn.setImage(img, for: UIControlState())
+        btn.bounds = CGRect(x: 0, y: 0, width: 25, height: 25)
+
+        if isDark == true {
+            btn.backgroundColor = UIColor(white: 0.0, alpha: 0.4)
+            btn.layer.cornerRadius = 12.5
+            btn.layer.masksToBounds = true
+        }
+
         return UIBarButtonItem(customView: btn)
     }
 
-    class func createNavBackBtn(_ vc: UIViewController, action: Selector) {
-        vc.navigationItem.leftBarButtonItem = UITools.createBarBtnItem(vc, action: action, image: #imageLiteral(resourceName: "nav_back"))
+    class func createNavBackBtn(_ vc: UIViewController, action: Selector, isDark: Bool = false) {
+        vc.navigationItem.leftBarButtonItem = UITools.createBarBtnItem(vc, action: action, image: #imageLiteral(resourceName: "nav_back"), isDark: isDark)
     }
 
     class func showAlert(_ target: UIViewController, title: String?, msg: String?, type: Int, callback: ((UIAlertAction) -> Void)?, cancelCallback: ((UIAlertAction) -> Void)? = nil) {

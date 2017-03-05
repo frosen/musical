@@ -89,6 +89,7 @@ class ListController: BaseTabController, DataOB, UITableViewDelegate, UITableVie
     // function --------------------------------------------------------------
 
     func enterDetail(id: DataID) {
-
+        let vc = DetailController(rootVC: rootVC, id: id)
+        navigationController!.pushViewController(vc, animated: true)
     }
 }

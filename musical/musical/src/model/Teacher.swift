@@ -23,5 +23,35 @@ class Teacher: BaseData {
     var trialNum: Int = 0
 
     // 价格
-    var priceList: [Int] = []
+    var priceList: [Price] = []
+
+    var imgList: [ShowImg] = []
 }
+
+class Price: NSObject {
+    var atStuHome: Int = 0
+    var atTchHome: Int = 0
+
+    var title: String = ""
+    var desc: String = ""
+
+    init(title: String, atStu: Int, atTch: Int, desc: String? = nil) {
+        self.title = title
+        self.atStuHome = atStu
+        self.atTchHome = atTch
+
+        if desc != nil {
+            self.desc = desc!
+        }
+        super.init()
+    }
+}
+
+class ShowImg: NSObject {
+    var imgUrl: String = ""
+    var txt: String = ""
+}
+
+
+
+

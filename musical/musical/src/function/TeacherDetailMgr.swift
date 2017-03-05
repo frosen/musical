@@ -21,7 +21,10 @@ class TeacherDetailMgr: DataMgr {
         teacher.name = "多多老师"
         teacher.teachAge = 8
         teacher.selfDesc = "专业钢琴教师 8年教龄 名校毕业"
-        teacher.priceList = [200, 300]
+        teacher.priceList = [
+            Price(title: "钢琴", atStu: 3200, atTch: 1200, desc: "专业一对一教学"),
+            Price(title: "钢琴乐理", atStu: 320, atTch: 120, desc: "专业一对一教学 哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈")
+        ]
         
         return teacher
     }

@@ -23,21 +23,22 @@ class TeacherListMgr: DataMgr {
         teacher.name = "多多老师"
         teacher.teachAge = 8
         teacher.selfDesc = "专业钢琴教师 8年教龄 名校毕业"
-        teacher.priceList = [200, 300]
+
+        teacher.priceList = [Price(title: "钢琴", atStu: 300, atTch: 200)]
 
         teacher = Teacher(ID: "123")
         teachers.append(teacher)
         teacher.name = "fengfeng"
         teacher.teachAge = 8
         teacher.selfDesc = "专业钢琴教师 8年教龄 名校毕业 哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈哈"
-        teacher.priceList = [5200, 5300]
+        teacher.priceList = [Price(title: "钢琴", atStu: 3200, atTch: 1200), Price(title: "钢琴乐理", atStu: 320, atTch: 120)]
 
         teacher = Teacher(ID: "123")
         teachers.append(teacher)
         teacher.name = "海海"
         teacher.teachAge = 8
         teacher.selfDesc = "朗朗百名琴童总策划 专业钢琴教师 8年教龄 名校毕业"
-        teacher.priceList = [1, 11]
+        teacher.priceList = [Price(title: "钢琴", atStu: 3, atTch: 20)]
 
         return teachers
     }
