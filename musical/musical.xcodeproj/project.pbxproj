@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		650EBD651E6D38D800FCD025 /* DetailToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650EBD641E6D38D800FCD025 /* DetailToolbar.swift */; };
 		655C9C831E62A52500E62132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C7F1E62A52500E62132 /* AppDelegate.swift */; };
 		655C9C841E62A52500E62132 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C821E62A52500E62132 /* RootViewController.swift */; };
 		655C9C881E62A5CD00E62132 /* MyTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C861E62A5CD00E62132 /* MyTabBar.swift */; };
@@ -59,6 +60,7 @@
 
 /* Begin PBXFileReference section */
 		01A94FF8A6B60DD998D9D3C7 /* Pods-musical.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musical.debug.xcconfig"; path = "Pods/Target Support Files/Pods-musical/Pods-musical.debug.xcconfig"; sourceTree = "<group>"; };
+		650EBD641E6D38D800FCD025 /* DetailToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailToolbar.swift; sourceTree = "<group>"; };
 		655C9C7F1E62A52500E62132 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		655C9C801E62A52500E62132 /* Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridging.h; sourceTree = "<group>"; };
 		655C9C821E62A52500E62132 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -271,6 +273,7 @@
 			children = (
 				6589CA511E6960610046C143 /* DetailController.swift */,
 				6598A84B1E6BF1F8002DE7F8 /* DetailCell.swift */,
+				650EBD641E6D38D800FCD025 /* DetailToolbar.swift */,
 			);
 			path = detail;
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 				655C9C831E62A52500E62132 /* AppDelegate.swift in Sources */,
 				655C9CA51E62AEAE00E62132 /* User.swift in Sources */,
 				655C9C891E62A5CD00E62132 /* MyTabBarItem.swift in Sources */,
+				650EBD651E6D38D800FCD025 /* DetailToolbar.swift in Sources */,
 				655C9C9C1E62ADC900E62132 /* OwnCells.swift in Sources */,
 				655C9CB21E62C4A000E62132 /* Avatar.swift in Sources */,
 				655C9C911E62A8B400E62132 /* BaseTabController.swift in Sources */,

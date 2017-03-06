@@ -41,7 +41,7 @@ class InfoBoard: UIView {
         addSubview(icon)
 
         // 文本
-        let lblBg = UIImageView(image: InfoBoard.createLblBgImg())
+        let lblBg = UIImageView(image: #imageLiteral(resourceName: "black"))
         addSubview(lblBg)
         lblBg.frame = CGRect(x: 0, y: InfoBoard.h - lblH, width: InfoBoard.w, height: lblH)
 
@@ -135,54 +135,6 @@ class InfoBoard: UIView {
         // 设置价格
         lPrice.set(price: atStuLowPrice)
         rPrice.set(price: atTchLowPrice)
-    }
-
-    private static var lblBgImg: UIImage? = nil
-    private static func createLblBgImg() -> UIImage {
-        if lblBgImg != nil {
-            return lblBgImg!
-        }
-
-        let gSize: CGSize = CGSize(width: w, height: h)
-
-        //创建CGContextRef
-        UIGraphicsBeginImageContext(gSize)
-        let context = UIGraphicsGetCurrentContext()!
-
-        //创建CGMutablePathRef
-        let path = CGMutablePath()
-
-        // 绘制Path
-        path.move(to: CGPoint(x: 0, y: 0))
-        path.addLine(to: CGPoint(x: gSize.width, y: 0))
-        path.addLine(to: CGPoint(x: gSize.width, y: gSize.height))
-        path.addLine(to: CGPoint(x: 0, y: gSize.height))
-        path.addLine(to: CGPoint(x: 0, y: 0))
-        path.closeSubpath()
-
-        // 颜色和方向
-        let colors: NSArray = [UIColor.clear.cgColor, UIColor(white: 0.0, alpha: 0.5).cgColor]
-        let colorArray: CFArray = colors as CFArray
-        let location: UnsafePointer<CGFloat> = UnsafePointer<CGFloat>([0.0, 1.0])
-
-        let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let gradient = CGGradient(colorsSpace: colorSpace, colors: colorArray, locations: location)!
-
-        let startPoint = CGPoint(x: 0, y: 0)
-        let endPoint = CGPoint(x: 0, y: gSize.height)
-        context.saveGState()
-        context.addPath(path)
-        context.clip()
-        context.drawLinearGradient(gradient, start: startPoint, end: endPoint, options: CGGradientDrawingOptions(rawValue: 0))
-        context.restoreGState()
-
-        // 获取图像
-        lblBgImg = UIGraphicsGetImageFromCurrentImageContext()!
-
-        // 结束
-        UIGraphicsEndImageContext()
-        
-        return lblBgImg!
     }
 }
 

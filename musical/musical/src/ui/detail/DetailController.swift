@@ -16,7 +16,7 @@ class DetailController: BaseController, DataOB, UITableViewDelegate, UITableView
     private var curTeacher: Teacher! = nil
 
     var tableView: UITableView! = nil
-//    private var toolbar: BaseToolbar! = nil
+    private var toolbar: DetailToolbar! = nil
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
@@ -50,14 +50,14 @@ class DetailController: BaseController, DataOB, UITableViewDelegate, UITableView
         tableView.separatorStyle = .none
         tableView.showsVerticalScrollIndicator = false //隐藏滑动条
         tableView.backgroundColor = UIColor.white
-//        tableView.bounces = false
+        tableView.bounces = false
 
         //按钮栏
-//        toolbar = BaseToolbar()
-//        baseView.addSubview(toolbar)
-//        toolbar.frame.origin.y = baseView.frame.height - toolbar.frame.height
-//
-//        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: toolbar.frame.height, right: 0)
+        toolbar = DetailToolbar()
+        baseView.addSubview(toolbar)
+        toolbar.frame.origin.y = baseView.frame.height - toolbar.frame.height
+
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: toolbar.frame.height, right: 0)
     }
 
     let DataObKey = "DetailViewController"
@@ -81,7 +81,7 @@ class DetailController: BaseController, DataOB, UITableViewDelegate, UITableView
         }
 
         curTeacher = data
-        sectionNum = 5
+        sectionNum = 4
 
         // 预生成这些static cell，避免第一次滑动造成的卡顿
         for indexPath in staticVarCellIndexList {
@@ -103,11 +103,9 @@ class DetailController: BaseController, DataOB, UITableViewDelegate, UITableView
         case 0:
             rowNum = 2 // head state
         case 1:
-            rowNum = 1 + curTeacher.priceList.count // price
+            rowNum = 2 // time
         case 2:
             rowNum = 2 // map
-        case 3:
-            rowNum = 2 // time
         default:
             rowNum = 1 + curTeacher.imgList.count
         }
@@ -145,18 +143,11 @@ class DetailController: BaseController, DataOB, UITableViewDelegate, UITableView
         case 1:
             switch indexPath.row {
             case 0:
-                return BaseCell.CInfo(id: "priceT", c: DetailPriceTitleCell.self)
-            default:
-                return BaseCell.CInfo(id: "price", c: DetailPriceCell.self)
-            }
-        case 2:
-            switch indexPath.row {
-            case 0:
                 return BaseCell.CInfo(id: "timeT", c: DetailTimeTitleCell.self)
             default:
                 return BaseCell.CInfo(id: "time", c: DetailTimeCell.self)
             }
-        case 3:
+        case 2:
             switch indexPath.row {
             case 0:
                 return BaseCell.CInfo(id: "mapT", c: DetailMapTitleCell.self)
