@@ -43,7 +43,7 @@ class InfoBoard: UIView {
         // 文本
         let lblBg = UIImageView(image: #imageLiteral(resourceName: "black"))
         addSubview(lblBg)
-        lblBg.frame = CGRect(x: 0, y: InfoBoard.h - lblH, width: InfoBoard.w, height: lblH)
+        lblBg.frame = CGRect(x: 0, y: 0, width: InfoBoard.w, height: InfoBoard.h)
 
         let font = UIFont.systemFont(ofSize: 25.0 * InfoBoard.rate)
         nameLbl = UILabel(frame: CGRect(x: margin, y: InfoBoard.h - lblH, width: 300, height: font.lineHeight))
