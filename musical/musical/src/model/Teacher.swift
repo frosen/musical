@@ -53,6 +53,42 @@ class AvailableTime: NSObject {
     func set(time: (Bool, Bool, Bool), by week: Int) {
         times[week] = time
     }
+
+    // --------------------------------------------------------
+    private static let key = 2
+
+    class func serialize(at: AvailableTime) -> Int {
+        var num = 1
+        var total = 0
+        for t in at.times {
+            total += (t.0 ? 1 : 0) * num
+            num *= key
+
+            total += (t.1 ? 1 : 0) * num
+            num *= key
+
+            total += (t.2 ? 1 : 0) * num
+            num *= key
+        }
+        return total
+    }
+
+    class func unserialize(data: Int) -> AvailableTime {
+        let at = AvailableTime()
+
+        var d = data
+        for i in 0 ..< at.times.count {
+            at.times[i].0 = (d % key == 1)
+            d = d / key
+
+            at.times[i].1 = (d % key == 1)
+            d = d / key
+
+            at.times[i].2 = (d % key == 1)
+            d = d / key
+        }
+        return at
+    }
 }
 
 class Price: NSObject {
@@ -71,6 +107,17 @@ class Price: NSObject {
             self.desc = desc!
         }
         super.init()
+    }
+
+    // --------------------------------------------------------
+    class func serialize(at: Price) -> [String: Any] {
+        return [:]
+    }
+
+    class func unserialize(data: [String: Any]) -> Price {
+        let pr = Price(title: "", atStu: 11, atTch: 11, desc: "")
+
+        return pr
     }
 }
 

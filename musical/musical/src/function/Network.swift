@@ -19,7 +19,7 @@ class Network: NSObject {
     }
 
     // 获取 orderType: 0无顺序，1时间从早到晚，2时间从晚到早
-    func fetchObjs(from: String, ids: [String], with lists: [String], order: String?, orderType: Int, callback: @escaping ((Bool, Any?) -> Void)) {
+    func fetchObjs(from: String, ids: [String], with lists: [String], order: String?, orderType: Int, callback: @escaping (([Any]?, Error?) -> Void)) {
         let query = AVQuery(className: from)
 
         if ids.count > 0 {
@@ -39,11 +39,7 @@ class Network: NSObject {
         }
 
         query.findObjectsInBackground { objs, error in
-            if error != nil || objs == nil {
-                return callback(false, nil)
-            }
-            print("fetch \(from) suc")
-            callback(true, objs)
+            callback(objs, error)
         }
     }
 

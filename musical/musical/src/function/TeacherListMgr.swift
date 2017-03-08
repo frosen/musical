@@ -9,15 +9,56 @@
 import UIKit
 
 class TeacherListMgr: DataMgr {
-    func fetch(obKey: String, callback: ((Bool, [Teacher]) -> Void)) {
+    var attrisKeeper: [String: Any] = [
+        "id": "id",
+        "name": "str",
+        "url": "str",
+        "sign": "str",
+        "time": 1,
+        "loc": "Location",
+        "price": ["price"],
+    ]
 
-//        Network.shareInstance.fetchObjs(from: Teacher.classname, ids: [], with: [
-//            "name", "url", "sign", "time", "loc", "price"
-//        ], order: nil, orderType: 0) { suc, objs in
-//            
-//        }
+    func fetch(obKey: String, callback: @escaping ((Bool, [Teacher]) -> Void)) {
 
-        callback(true, getTestData())
+        Network.shareInstance.fetchObjs(from: Teacher.classname, ids: [], with: [
+            "name", "url", "sign", "time", "loc", "price"
+        ], order: nil, orderType: 0) { objs, error in
+            guard error == nil else {
+                print("ERROR: TeacherListMgr fetch", error!)
+                if DataMgr.hasOb(for: obKey) {
+                    callback(true, [])
+                }
+                return
+            }
+
+            DispatchQueue(label: self.parseThreadName).async {
+
+                var teachers: [Teacher] = []
+                Network.shareInstance.parse(obj: objs!, by: &self.attrisKeeper) { key, attris in
+                    if key == "" {
+                        let teacher = Teacher(ID: attris["id"] as! DataID)
+                        teacher.name = attris["name"] as! String
+                        teacher.avatarUrl = attris["url"] as! String
+                        teacher.sign = attris["sign"] as! String
+                        teacher.availableTime = AvailableTime.unserialize(data: attris["time"] as! Int)
+                        teacher.location.set(loc: attris["loc"] as! CLLocation)
+                        let priceAttris = attris["price"] as! [[String: Any]]
+                        for pAttri in priceAttris {
+                            teacher.priceList.append(Price.unserialize(data: pAttri))
+                        }
+
+                        teachers.append(teacher)
+                    }
+                }
+
+                DispatchQueue.main.async {
+                    if DataMgr.hasOb(for: obKey) {
+                        callback(true, teachers)
+                    }
+                }
+            }
+        }
     }
 
     private func getTestData() -> [Teacher] {

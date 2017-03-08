@@ -14,6 +14,8 @@ protocol DataOB {
 
 class DataMgr: NSObject {
 
+    let parseThreadName: String = "data.parse" // 服务器返回数据的解析线程名称
+
     // 逻辑数据 观察者 ----------------------------------------
 
     private static var obDict: [String: DataOB] = [:]
