@@ -13,19 +13,46 @@ class Teacher: BaseData {
 
     var name: String = ""
     var avatarUrl: String = ""
+    var sign: String = ""
 
+    var availableTime: AvailableTime = AvailableTime()
     var location: Location = Location()
-
-    var teachAge: Int = 0
-    var selfDesc: String = ""
-
-    var courseNum: Int = 0
-    var trialNum: Int = 0
 
     // 价格
     var priceList: [Price] = []
 
+    // 状态
+    var trailNum: Int = 0
+    var learnedNum: Int = 0 // 已经上过课程课时
+    var learningNum: Int = 0 // 本周上课人数
+
+    // 教师介绍
+    var introduction: String = ""
     var imgList: [ShowImg] = []
+
+    // 其他教师资料
+    var teachAge: Int = 0
+}
+
+class AvailableTime: NSObject {
+    private var times: [(Bool, Bool, Bool)] = [
+        (false, false, false),
+        (false, false, false),
+        (false, false, false),
+        (false, false, false),
+        (false, false, false),
+        (false, false, false),
+        (false, false, false)
+    ]
+
+    // 0 为周日，其他1-6，返回上午下午晚上，有时间为
+    func get(by week: Int) -> (Bool, Bool, Bool) {
+        return times[week]
+    }
+
+    func set(time: (Bool, Bool, Bool), by week: Int) {
+        times[week] = time
+    }
 }
 
 class Price: NSObject {

@@ -103,7 +103,7 @@ class InfoBoard: UIView {
         icon.sd_setImage(with: URL(string: data.avatarUrl), placeholderImage: #imageLiteral(resourceName: "teacher_bg"))
 
         nameLbl.text = data.name
-        descLbl.text = data.selfDesc
+        descLbl.text = data.sign
 
         locationLbl.text = " " + "朝阳 756米" + " "
         locationLbl.sizeToFit()

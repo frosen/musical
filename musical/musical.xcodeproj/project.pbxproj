@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		650EBD651E6D38D800FCD025 /* DetailToolbar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 650EBD641E6D38D800FCD025 /* DetailToolbar.swift */; };
+		65221FA31E6FD86800433211 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 65221FA21E6FD86800433211 /* Network.swift */; };
 		655C9C831E62A52500E62132 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C7F1E62A52500E62132 /* AppDelegate.swift */; };
 		655C9C841E62A52500E62132 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C821E62A52500E62132 /* RootViewController.swift */; };
 		655C9C881E62A5CD00E62132 /* MyTabBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 655C9C861E62A5CD00E62132 /* MyTabBar.swift */; };
@@ -61,6 +62,7 @@
 /* Begin PBXFileReference section */
 		01A94FF8A6B60DD998D9D3C7 /* Pods-musical.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-musical.debug.xcconfig"; path = "Pods/Target Support Files/Pods-musical/Pods-musical.debug.xcconfig"; sourceTree = "<group>"; };
 		650EBD641E6D38D800FCD025 /* DetailToolbar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailToolbar.swift; sourceTree = "<group>"; };
+		65221FA21E6FD86800433211 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		655C9C7F1E62A52500E62132 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		655C9C801E62A52500E62132 /* Bridging.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Bridging.h; sourceTree = "<group>"; };
 		655C9C821E62A52500E62132 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
@@ -213,6 +215,7 @@
 				655C9CAF1E62C1BD00E62132 /* UserMgr.swift */,
 				655C9CA91E62B62D00E62132 /* TeacherListMgr.swift */,
 				6589CA571E6962520046C143 /* TeacherDetailMgr.swift */,
+				65221FA21E6FD86800433211 /* Network.swift */,
 			);
 			path = function;
 			sourceTree = "<group>";
@@ -508,6 +511,7 @@
 				655C9C881E62A5CD00E62132 /* MyTabBar.swift in Sources */,
 				655C9CA81E62B37100E62132 /* DataMgr.swift in Sources */,
 				655C9CAA1E62B62D00E62132 /* TeacherListMgr.swift in Sources */,
+				65221FA31E6FD86800433211 /* Network.swift in Sources */,
 				6589CA561E6960610046C143 /* DetailController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
