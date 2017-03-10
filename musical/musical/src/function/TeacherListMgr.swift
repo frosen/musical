@@ -19,11 +19,10 @@ class TeacherListMgr: DataMgr {
         "price": ["price"],
     ]
 
-    func fetch(obKey: String, callback: @escaping ((Bool, [Teacher]) -> Void)) {
-
+    func fetch(obKey: String, loc: CLLocation, callback: @escaping ((Bool, [Teacher]) -> Void)) {
         Network.shareInstance.fetchObjs(from: Teacher.classname, ids: [], with: [
             "name", "url", "sign", "time", "loc", "price"
-        ], order: nil, orderType: 0) { objs, error in
+        ], order: (3, ("loc", loc)), skip: 0) { objs, error in
             guard error == nil else {
                 print("ERROR: TeacherListMgr fetch", error!)
                 if DataMgr.hasOb(for: obKey) {

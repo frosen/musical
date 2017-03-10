@@ -9,6 +9,9 @@
 import UIKit
 
 class UserMgr: DataMgr {
+
+    var loc: Location = Location()
+
     func fetch(obKey: String, callback: ((Bool, User) -> Void)) {
         let user = User(ID: "12345")
         user.name = "明明"

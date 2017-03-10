@@ -29,26 +29,59 @@ class ListController: BaseTabController, DataOB, UITableViewDelegate, UITableVie
         tableView.backgroundColor = UIColor.white
 
         tableView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: -3) //否则滚动条和屏幕边会有一段间隔
+
+        setWaitingUI()
     }
+
+    // ------------------------------------------------------------------------------------------
 
     let DataObKey = "ChallengeController"
     override func initData() {
         DataMgr.register(observer: self, key: DataObKey)
-        APP.teacherListMgr.fetch(obKey: DataObKey) { suc, teachers in
-            self.onFetchData(suc: suc, data: teachers)
+
+        APP.userMgr.loc.getLoc { loc in
+            if loc == nil {
+                self.setNoMapUI()
+            } else {
+                APP.teacherListMgr.fetch(obKey: self.DataObKey, loc: loc!) { suc, teachers in
+                    self.onFetchData(suc: suc, data: teachers)
+                }
+            }
         }
     }
 
     func onFetchData(suc: Bool, data: [Teacher]) {
         if suc {
             curTeachers = data
-            tableView.reloadData()
+            setUIWithData()
         } else {
-
+            setNoDataUI()
         }
     }
 
-    //table view =============================================================================================
+    // ------------------------------------------------------------------------------------------
+
+    private func setWaitingUI() {
+        print("setWaitingUI")
+    }
+
+    private func setNoMapUI() {
+        print("set No Map UI")
+
+    }
+
+    private func setNoDataUI() {
+        print("set No Data UI")
+
+    }
+
+    private func setUIWithData() {
+        print("setUI With Data")
+
+        tableView.reloadData()
+    }
+
+    //table view --------------------------------------------------------------
 
     func numberOfSections(in tableView: UITableView) -> Int {
         return curTeachers.count //因为要利用section的head作为留白，所以每个section就是一行数据

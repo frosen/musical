@@ -19,7 +19,7 @@ class Network: NSObject {
     }
 
     // 获取 orderType: 0无顺序，1时间从早到晚，2时间从晚到早
-    func fetchObjs(from: String, ids: [String], with lists: [String], order: String?, orderType: Int, callback: @escaping (([Any]?, Error?) -> Void)) {
+    func fetchObjs(from: String, ids: [String], with lists: [String], order: (Int, Any)?, skip: Int?, callback: @escaping (([Any]?, Error?) -> Void)) {
         let query = AVQuery(className: from)
 
         if ids.count > 0 {
@@ -30,11 +30,20 @@ class Network: NSObject {
             query.selectKeys(lists)
         }
 
+        if skip != nil {
+            query.skip = skip!
+        }
+        query.limit = 20
+
         if order != nil {
-            if orderType == 1 {
-                query.order(byAscending: order!) // 早的在前
-            } else if orderType == 2 {
-                query.order(byDescending: order!) // 早的在后
+            if order!.0 == 1 {
+                query.order(byAscending: order!.1 as! String) // 早的在前
+            } else if order!.0 == 2 {
+                query.order(byDescending: order!.1 as! String) // 早的在后
+            } else if order!.0 == 3 {
+                let data = order!.1 as! (String, CLLocation)
+                let point = AVGeoPoint(latitude: data.1.coordinate.latitude, longitude: data.1.coordinate.longitude)
+                query.whereKey(data.0, nearGeoPoint: point)
             }
         }
 
