@@ -111,11 +111,20 @@ class Price: NSObject {
 
     // --------------------------------------------------------
     class func serialize(at: Price) -> [String: Any] {
-        return [:]
+        return [
+            "title": at.title,
+            "stu": at.atStuHome,
+            "tch": at.atTchHome,
+            "desc": at.desc
+        ]
     }
 
     class func unserialize(data: [String: Any]) -> Price {
-        let pr = Price(title: "", atStu: 11, atTch: 11, desc: "")
+        let t = data["title"] as! String
+        let stu = data["stu"] as! Int
+        let tch = data["tch"] as! Int
+        let desc = data["desc"] as! String
+        let pr = Price(title: t, atStu: stu, atTch: tch, desc: desc)
 
         return pr
     }

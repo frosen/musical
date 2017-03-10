@@ -35,7 +35,7 @@ class ListController: BaseTabController, DataOB, UITableViewDelegate, UITableVie
     override func initData() {
         DataMgr.register(observer: self, key: DataObKey)
         APP.teacherListMgr.fetch(obKey: DataObKey) { suc, teachers in
-            onFetchData(suc: suc, data: teachers)
+            self.onFetchData(suc: suc, data: teachers)
         }
     }
 
